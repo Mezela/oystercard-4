@@ -36,7 +36,7 @@ class Oystercard
     journey.finish(exit_station)
     deduct(journey.fare)
     @exit_station = exit_station
-    save_journey(entry_station, exit_station)
+    # save_journey(entry_station, exit_station)
     @entry_station = nil
   end
 
@@ -64,9 +64,9 @@ class Oystercard
     @balance -= amount
   end
 
-  def save_journey(entry, exit)
-    last_journey = {}
-    last_journey[entry] = exit
-    @journey_history << last_journey
-  end
+  # def save_journey(entry, exit)
+  #   last_journey = {}
+  #   last_journey[entry] = exit
+  #   @journey_history << last_journey
+  # end
 end

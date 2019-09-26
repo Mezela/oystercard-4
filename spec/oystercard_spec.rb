@@ -2,6 +2,7 @@
 
 require 'oystercard'
 require 'journey'
+require 'station'
 
 describe Oystercard do
   let(:oyster) { Oystercard.new }
@@ -71,19 +72,6 @@ describe Oystercard do
       expect { oyster.touch_out(station_b) }.to change { oyster.entry_station }.to eq nil
     end
 
-    it 'saves journey' do
-      oyster.touch_out(station_b)
-      expect(oyster.journey_history).to eq [{ station_a => station_b }]
-    end
   end
-  describe '#show_journey_history' do
-    before do
-      oyster.top_up(Oystercard::MINIMUM_BALANCE)
-      oyster.touch_in(station_a)
-      oyster.touch_out(station_b)
-    end
-    it 'shows journey history' do
-      expect(oyster.show_journey_history).to eq ["#{station_a} ---> #{station_b}"]
-    end
-  end
+ 
 end
