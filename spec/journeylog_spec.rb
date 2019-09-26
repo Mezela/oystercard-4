@@ -23,14 +23,23 @@ describe '#finish' do
 
   end
 
-#   describe '#show_journey_history' do
-#   before do
-#     oyster.top_up(Oystercard::MINIMUM_BALANCE)
-#     oyster.touch_in(station_a)
-#     oyster.touch_out(station_b)
-#   end
-#   it 'shows journey history' do
-#     expect(oyster.show_journey_history).to eq ["#{station_a} ---> #{station_b}"]
-#   end
-# end
+  describe '#show_history' do
+  
+  it 'shows journey history' do
+    subject.start(station_a)
+    subject.finish(station_b)
+    subject.save_journey
+    expect(subject.show_history).to eq ["#{station_a} ---> #{station_b}"]
+  end
+end
+
+describe '#save_journey' do
+
+  it 'saves the last journey' do
+    subject.start(station_a)
+    subject.finish(station_b)
+    expect(subject.save_journey).to eq [{ entry: station_a, exit: station_b}]
+  end
+end
+
 end
